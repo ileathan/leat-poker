@@ -1,6 +1,6 @@
 # leat-poker
 
-My goals and objevtives are purely altruistic, as you can see from the code all monetization is shared as if I were an end user.
+My goals are purely altruistic, as you can see from the code all monetization is shared as if I were an end user.
 
 # Provably fair poker.
 
