@@ -2,7 +2,7 @@
 
 My goals are purely altruistic, as you can see from the code all monetization is shared as if I were an end user.
 
-# Provably fair poker.
+# Whats in this repo
 
 
 The list of code I am both generating, refactoring, and pulling is growing larger and larger so I will keep track of it here.
@@ -19,7 +19,7 @@ The list of code I am both generating, refactoring, and pulling is growing large
 
 
 
-# Explain better
+# Its Provably fair!
 
 Well, _I have driven myself mad for almost a decade now looking for just poker, but provably fair._
 
