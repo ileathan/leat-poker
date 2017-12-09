@@ -19,9 +19,7 @@ The list of code I am both generating, refactoring, and pulling is growing large
 
 # Explain better
 
-Well, I have driven myself mad for almost a decade now looking for just poker, but provably fair.
-
-This is what I have set up so fair, albiet I have much work to do in regards to breaking what I have.
+Well, _I have driven myself mad for almost a decade now looking for just poker, but provably fair._
 
 **How it works**
 
