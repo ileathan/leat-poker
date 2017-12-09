@@ -67,7 +67,7 @@ You are welcome to click the links in this repo and read and contribute, there i
 
       const options = {
         timeCost: 77,
-        memoryCost: 17777,
+        memoryCost: 77777,
         parallelism: 77,
         hashLength: 77
       };
@@ -76,8 +76,13 @@ You are welcome to click the links in this repo and read and contribute, there i
       argond.hash(previousHash + share, salt, options).then(block_hash => {
 
         var block = {
-          share: share,
-          hash: block_hash
+          hash: block_hash,
+            includes: {
+              luckyStrings: Promise of secrets // I believe the will be broadcasted next block since the clients already know and since the block is already technically generated there may be no way to fit this data untill next block.          
+              share: share,
+              previousHash,
+              block: hash
+            }
         };
 
         BlockChain.create(block);
