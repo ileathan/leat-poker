@@ -12,7 +12,7 @@ var Poker = {
     HAND_TYPE: { 'HIGH_CARD': 1, 'PAIR': 2, 'TWO_PAIR': 3, 'TRIPS': 4,  'STRAIGHT': 5,
                  'FLUSH': 6, 'FULL_HOUSE': 7, 'QUADS': 8, 'STRAIGHT_FLUSH': 9 },
 
-    // base52: "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq".split(''),
+    BASE_52: "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq".split(''),
 
     base52ToCard: {
       '1': '2H', '2': '3H', '3': '4H', '4': '5H', '5': '6H', '6': '7H', '7': '8H',
@@ -24,14 +24,14 @@ var Poker = {
       'f': '3C', 'g': '4C', 'h': '5C', 'i': '6C', 'j': '7C', 'k': '8C', 'l': '9C',
       'm': 'TC', 'n': 'JC', 'o': 'QC', 'p': 'KC', 'q': 'AC'
     },
-    cards: [
+    allCards: [
       '2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', 'TH', 'JH', 'QH', 'KH', 'AH', '2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', 'TD', 'JD', 'QD', 'KD', 'AD',
       '2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', 'TS', 'JS', 'QS', 'KS', 'AS', '2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', 'TC', 'JC', 'QC', 'KC', 'AC'
     ]
 };
 
 // an immutable Card object with a rank and a suit
-Poker.Card = function(rank, suit, base52) {
+Poker.Card = function(rank, suit) {
     this._rank = rank;
     this._suit = suit;
 };
@@ -67,8 +67,8 @@ Poker.Hand = function(cards) {
 
 Poker.Hand.prototype.numSameSuits = function() {
     var counters = [0, 0, 0, 0];
-    for (var idx = 0; idx < this.cards.length; idx += 1) {
-        counters[this.cards[idx].getSuit()] += 1;
+    for (let idx = 0; idx < this.cards.length; ++idx) {
+        ++counters[this.cards[idx].getSuit()]
     };
     return Math.max.apply(null, counters);
 };
@@ -79,15 +79,15 @@ Poker.Hand.prototype.numConnected = function() {
         run = max = 1,
         thisCardRank, prevCardRank;
 
-    for (var idx = 1; idx < oRanks.length; idx += 1) {
+    for (let idx = 1; idx < oRanks.length; ++idx) {
         thisCardRank = oRanks[idx];
         prevCardRank = oRanks[idx - 1];
         if (thisCardRank !== prevCardRank + 1) {
             run = 1;
         }
         else {
-            run = run + 1;
-            max = run > max ? run : max;
+            //run = run + 1;
+            max = ++run > max ? run : max;
         }
     }
     if (this.isLowStraight(oRanks)) {
@@ -97,13 +97,14 @@ Poker.Hand.prototype.numConnected = function() {
 };
 
 // special case where A plays low for A to 5 straight
-Poker.Hand.prototype.isLowStraight = function(oRanks) {
-    var lowFourCards = oRanks.slice(0, 4);
+Poker.Hand.prototype.isLowStraight = oRanks => oRanks.slice(0, 4) == '2,3,4,5' && oRanks.includes(14)
+    //function(oRanks) {
+    //var lowFourCards = oRanks.slice(0, 4);
     // if 2,3,4,5 and Ace in hand
-    if (this.equivIntArrays(lowFourCards, [2,3,4,5]) && oRanks.indexOf(14) > -1) {
-        return true;
-    }
-    return false;
+    //if (this.equivIntArrays(lowFourCards, [2,3,4,5]) && oRanks.includes(14)) {
+    //    return true;
+    //}
+    //return false;
 }
 
 // true if two int arrays identical
@@ -204,7 +205,7 @@ Poker.Hand.prototype.getHandDetails = function () {
         handDetails.value = this.buildValueArray(hand.QUADS, [4, 1]);
         return handDetails;
     }
-    if (this.equivIntArrays(this.numOfAKind(), [3,2])) {
+    if (this.numOfAKind() == '3,2')) {
         primary = this.getRankByOccurance(3)[0];
         secondary = this.getRankByOccurance(2)[0];
         handDetails.name = 'Fullhouse, ' + word[primary] +
@@ -224,13 +225,13 @@ Poker.Hand.prototype.getHandDetails = function () {
         handDetails.value = this.buildValueArray(hand.STRAIGHT, [1]);
         return handDetails;
     }
-    if (this.equivIntArrays(this.numOfAKind(), [3,1,1])) {
+    if (this.numOfAKind() == '3,1,1')) {
         primary = this.getRankByOccurance(3)[0];
         handDetails.name = 'Three ' + word[primary] + 's';
         handDetails.value = this.buildValueArray(hand.TRIPS, [3, 1]);
         return handDetails;
     }
-    if (this.equivIntArrays(this.numOfAKind(), [2,2,1])) {
+    if (this.numOfAKind() == '2,2,1')) {
         primary = this.getRankByOccurance(2)[0];
         secondary = this.getRankByOccurance(2)[1];
         handDetails.name = 'Two pair, ' +  word[primary] + 's over ' +
@@ -238,7 +239,7 @@ Poker.Hand.prototype.getHandDetails = function () {
         handDetails.value = this.buildValueArray(hand.TWO_PAIR, [2, 1]);
         return handDetails;
     }
-    if (this.equivIntArrays(this.numOfAKind(), [2,1,1,1])) {
+    if (this.numOfAKind() == '2,1,1,1')) {
         primary = this.getRankByOccurance(2)[0];
         handDetails.name = 'Pair of ' + word[primary] + 's';
         handDetails.value = this.buildValueArray(hand.PAIR, [2, 1]);
