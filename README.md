@@ -109,7 +109,7 @@ You are welcome to click the links in this repo and read and contribute, there i
       *                                                    *
       *         The magic happens here, an ordinary        *
       *         HMAC-SHA512 hash created LOCALLY and       *
-      *         and seeded by the END USER creates the     *
+      *         seeded by the END USER creates the         *
       *         deck and is inserted into the next block   *
       *                                                    *
       * Note we preserve shreaded deck for future shuffles *
