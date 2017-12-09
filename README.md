@@ -95,16 +95,17 @@ You are welcome to click the links in this repo and read and contribute, there i
 ```
 **CLIENT**
 ```
-   function shuffle(cards, block, secrets) {
+   // Deck is an immutable constantly carried over from last game
+   // on all tables.
+   function shuffle(Deck, block, secrets) {
       /* 
       * Our encoder.
       */
       const c = require('encode-x')();
       /*
       * Everything is an immutable constant.
-      */
-      const Deck = cards.join('');
-      /*****************************************************
+      *
+      ******************************************************
       *                                                    *
       *         The magic happens here, an ordinary        *
       *         HMAC-SHA512 hash created LOCALLY and       *
