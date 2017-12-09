@@ -7,7 +7,7 @@ My goals are purely altruistic, as you can see from the code all monetization is
 
 The list of code I am both generating, refactoring, and pulling is growing larger and larger so I will keep track of it here.
 
-1.) The core `leat` code which is piggy backed onto a Mubot instance.
+1.) The core `leat` code which is piggy backed onto a `mubot` instance.
 
 2.) The core client `leat` code which is run on the client.
 
