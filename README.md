@@ -2,22 +2,6 @@
 
 My goals are purely altruistic, as you can see from the code all monetization is shared as if I were an end user.
 
-# Whats in this repo
-
-
-The list of code I am both generating, refactoring, and pulling is growing larger and larger so I will keep track of it here.
-
-1.) The core server `leat` code which is piggy backed onto a `mubot` instance.
-
-2.) The core client `leat` code which is run on the client.
-
-3.) The Stratum which delegates work to the clients.
-
-4.) The poker libraries.
-
-4.) The block chain libraries (yet to be pulled from the server core).
-
-
 
 # Its Provably fair!
 
@@ -34,6 +18,21 @@ Well, _I have driven myself mad for almost a decade now looking for just poker, 
 4.) Now that we have our block we use it to generate all decks for all tables. When the server hands the clients the block if they do not _immediately_ respond with a lucky string they are disconnected. (They use this to generate their cards) If all users respond with lucky strings then the server allows betting, and continues to verify that the user is hashing fairly on all subsequent bets untill the game is over.
 
 5.) Once the game is over the salting data used to generate the block, along with any unused data cards are disclosed to the clients so that they may verify the hash against the work submitted, and the past blocks/decks.
+
+
+# Whats in this repo
+
+The list of code I am both generating, refactoring, and pulling is growing larger and larger so I will keep track of it here.
+
+1.) The core server `leat` code which is piggy backed onto a `mubot` instance.
+
+2.) The core client `leat` code which is run on the client.
+
+3.) The Stratum which delegates work to the clients.
+
+4.) The poker libraries.
+
+4.) The block chain libraries (yet to be pulled from the server core).
 
 
 # Show me some code
