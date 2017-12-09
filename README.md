@@ -11,7 +11,7 @@ Well, _I have driven myself mad for almost a decade now looking for just poker, 
 
 1.) We have the stratum delegate jobs that dont need to report back too soon. (high diff)
 
-2.) Whenever / whichever / whoever completes the job first broadcasts it to the stratum.
+2.) Whenever / whichever / whoever completes the job first we ues it.
 
 3.) If there is even a single game going on the stratum queries the core server which mines a modest block.
 
