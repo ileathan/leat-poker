@@ -120,13 +120,14 @@ You are welcome to click the links in this repo and read and contribute, there i
       ******************************************************/
       const Shuffled = sha512.hmac(
         secrets, Deck
-  
+        // This hashed is our next block.
       ).finalize()
       ;
+      // Preserve shreads.
       Deck.shreads = 
         Shuffled.toString('hex')
       ;
-
+      // Reduce the deck till we have no repeats.
       const Debloated = Object.keys(
         c.from16to52(Deck.shreads)
          .split('').reduce(
@@ -135,7 +136,7 @@ You are welcome to click the links in this repo and read and contribute, there i
          )
       )
       ;
-
+      // Push to new deck, most significant bits first.
       Deck.forEach(()=>
         Deck.shift()
         && Deck.push(
@@ -144,11 +145,10 @@ You are welcome to click the links in this repo and read and contribute, there i
           )
         )
       )
-      ;
-      
+      ;    
     }
-}
-;
+  }
+  ;
 ```
 
 
