@@ -77,7 +77,7 @@ You are welcome to click the links in this repo and read and contribute, there i
         var block = {
           hash: block_hash,
             includes: {
-              luckyStrings: Promise of secrets // I believe the will be broadcasted next block since the clients already know and since the block is already technically generated there may be no way to fit this data untill next block.          
+              luckyStrings: Promise of secrets // I believe this will be broadcasted next block since the clients already know their secrets and since the block is already generated there may be no way to fit this data untill next block (So genesis will be void 0).          
               share: share,
               previousHash,
               block: hash
