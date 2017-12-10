@@ -3,7 +3,7 @@
 My goals are purely altruistic, as you can see from the code all monetization is shared as if I were an end user.
 
 
-# Its Provably fair!
+# Its provably fair!
 
 **How it works**
 
