@@ -30,6 +30,8 @@ The list of code I am both generating, refactoring, and pulling is growing large
 
 4.) The poker libraries.
 
+5.) The encoder used to swap bases (This may be replaced with specific code `hex->basePoker`
+
 4.) The block chain libraries (yet to be pulled from the server core).
 
 
