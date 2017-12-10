@@ -3,9 +3,7 @@
 My goals are purely altruistic, as you can see from the code all monetization is shared as if I were an end user.
 
 
-# Its Provably fair!
-
-Well, _I have driven myself mad for almost a decade now looking for just poker, but provably fair._
+# Its provably fair!
 
 **How it works**
 
@@ -31,6 +29,8 @@ The list of code I am both generating, refactoring, and pulling is growing large
 3.) The Stratum which delegates work to the clients.
 
 4.) The poker libraries.
+
+5.) The encoder used to swap bases (This may be replaced with specific code `hex->basePoker`
 
 4.) The block chain libraries (yet to be pulled from the server core).
 
@@ -77,7 +77,7 @@ You are welcome to click the links in this repo and read and contribute, there i
         var block = {
           hash: block_hash,
             includes: {
-              luckyStrings: Promise of secrets // I believe the will be broadcasted next block since the clients already know and since the block is already technically generated there may be no way to fit this data untill next block.          
+              luckyStrings: Promise of secrets // I believe this will be broadcasted next block since the clients already know their secrets and since the block is already generated there may be no way to fit this data untill next block (So genesis will be void 0).          
               share: share,
               previousHash,
               block: hash
@@ -120,13 +120,14 @@ You are welcome to click the links in this repo and read and contribute, there i
       ******************************************************/
       const Shuffled = sha512.hmac(
         secrets, Deck
-  
+        // This hashed is our next block.
       ).finalize()
       ;
+      // Preserve shreads.
       Deck.shreads = 
         Shuffled.toString('hex')
       ;
-
+      // Reduce the deck till we have no repeats.
       const Debloated = Object.keys(
         c.from16to52(Deck.shreads)
          .split('').reduce(
@@ -135,20 +136,17 @@ You are welcome to click the links in this repo and read and contribute, there i
          )
       )
       ;
-
+      // Push to new deck, most significant bits first.
       Deck.forEach(()=>
         Deck.shift()
-        && Deck.pop(
+        && Deck.push(
           base52ToCard(
             Debloated[Deck.length]
           )
         )
       )
-      ;
-      
-    }
-}
-;
+      ;    
+  }
 ```
 
 
