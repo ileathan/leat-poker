@@ -5,8 +5,6 @@ My goals are purely altruistic, as you can see from the code all monetization is
 
 # Its Provably fair!
 
-Well, _I have driven myself mad for almost a decade now looking for just poker, but provably fair._
-
 **How it works**
 
 1.) We have the stratum delegate jobs that dont need to report back too soon. (high diff)
