@@ -23,7 +23,7 @@ const Poker = {
       'FLUSH': 6, 'FULL_HOUSE': 7, 'QUADS': 8, 'STRAIGHT_FLUSH': 9
     }
     ,
-    base52: "0123456789abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOP".split('')
+    base52: "0123456789abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOP"
     ,
     base52ToCard: char => ({
     // Hearts
@@ -68,9 +68,11 @@ Poker.Card.prototype.getSuit = function() {
 }
 ;
 Poker.Card.prototype.toBase52 = function() {
-    return Poker.BASE_52 [ 
-        Poker.cards.indexOf(this.toString.toUpperCase())
-    ]
+    var i = Poker.cards.length;
+    while(i--)
+        if(base52ToCard(i) == this.card)
+          return this.card + '';
+        ;
     ;
 }
 ;
