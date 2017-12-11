@@ -177,7 +177,7 @@ Poker.Hand.prototype.getRankCount = function() {
 Poker.Hand.prototype.objToArray = function(obj) {
     var values = []
     ;
-    for(var key in obj)
+    for(let key in obj)
         if(obj.hasOwnProperty(key))
             values.push(obj[key])
         ;
@@ -191,7 +191,7 @@ Poker.Hand.prototype.getRankByOccurance = function(n) {
     var rankCount = this.getRankCount()
       , matchedRanks = []
     ;
-    for(var rank in rankCount)
+    for(let rank in rankCount)
         if(rankCount.hasOwnProperty(rank))
             if(rankCount[rank] === n)
                 matchedRanks.push(parseInt(rank, 10))
@@ -330,7 +330,7 @@ Poker.Hand.prototype.buildValueArray = function(handType, rankOccurances) {
 Poker.Hand.prototype.toString = function() {
     var str = ''
     ;
-    for (let i = 0, l = this.cards.length; ++i)
+    for(let i = 0, l = this.cards.length; i < l; ++i)
         str += this.cards[i].toString() + ' '
     ;
     return str.slice(0, str.length - 1)
