@@ -1,37 +1,57 @@
 var Poker = {
-    rankToString: ['', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'],
+    rankToString: [
+      '', '', '2', '3', '4', '5', '6', '7',
+      '8', '9', 'T', 'J', 'Q', 'K', 'A'
+    ],
 
-    rankToWord: ['', '', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king', 'ace'],
+    rankToWord: [
+      '', '', 'two', 'three', 'four', 'five', 'six', 'seven', 
+      'eight', 'nine', 'ten', 'jack', 'queen', 'king', 'ace'
+   ],
 
     suitToString: ['H', 'D', 'C', 'S'],
 
-    rankToInt: {'2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'T': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14},
+    rankToInt: {
+      '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8,
+      '9': 9, 'T': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14
+    },
 
     suitToInt: {'H': 0, 'D': 1, 'C': 2, 'S': 3},
 
-    HAND_TYPE: { 'HIGH_CARD': 1, 'PAIR': 2, 'TWO_PAIR': 3, 'TRIPS': 4,  'STRAIGHT': 5,
-                 'FLUSH': 6, 'FULL_HOUSE': 7, 'QUADS': 8, 'STRAIGHT_FLUSH': 9 },
-
-    BASE_52: "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq".split(''),
-
-    base52ToCard: {
-      '1': '2H', '2': '3H', '3': '4H', '4': '5H', '5': '6H', '6': '7H', '7': '8H',
-      '8': '9H', '9': 'TH', 'A': 'JH', 'B': 'QH', 'C': 'KH', 'D': 'AH', 'E': '2D',
-      'F': '3D', 'G': '4D', 'H': '5D', 'I': '6D', 'J': '7D', 'K': '8D', 'L': '9D',
-      'M': 'TD', 'N': 'JD', 'O': 'QD', 'P': 'KD', 'Q': 'AD',
-      'R': '2S', 'S': '3S', 'T': '4S', 'U': '5S', 'V': '6S', 'W': '7S', 'X': '8S',
-      'Y': '9S', 'Z': 'TS', 'a': 'JS', 'b': 'QS', 'c': 'KS', 'd': 'AS', 'e': '2C',
-      'f': '3C', 'g': '4C', 'h': '5C', 'i': '6C', 'j': '7C', 'k': '8C', 'l': '9C',
-      'm': 'TC', 'n': 'JC', 'o': 'QC', 'p': 'KC', 'q': 'AC'
+    HAND_TYPE: { 
+      'HIGH_CARD': 1, 'PAIR': 2, 'TWO_PAIR': 3, 'TRIPS': 4,  'STRAIGHT': 5,
+      'FLUSH': 6, 'FULL_HOUSE': 7, 'QUADS': 8, 'STRAIGHT_FLUSH': 9
     },
-    allCards: [
-      '2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', 'TH', 'JH', 'QH', 'KH', 'AH', '2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', 'TD', 'JD', 'QD', 'KD', 'AD',
-      '2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', 'TS', 'JS', 'QS', 'KS', 'AS', '2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', 'TC', 'JC', 'QC', 'KC', 'AC'
+
+    // Base52 - "0123456789abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOP"  
+    base52ToCard: char => ({
+    // Hearts
+    '0': '2H', '1': '3H', '2': '4H', '3': '5H', '4': '6H', '5': '7H', '6': '8H',
+    '7': '9H', '8': 'TH', '9': 'JH', 'a': 'QH', 'b': 'KH', 'c': 'AH', 
+    // Diamonds
+    'd': '2D', 'e': '3D', 'f': '4D', 'g': '5D', 'h': '6D', 'i': '7D', 'j': '8D',
+    'k': '9D', 'l': 'TD', 'm': 'JD', 'n': 'QD', 'o': 'KD', 'p': 'AD',
+    // Clubs
+    'D': '2C', 'E': '3C', 'F': '4C', 'G': '5C', 'H': '6C', 'I': '7C', 'J': '8C',
+    'K': '9C', 'L': 'TC', 'M': 'JC', 'N': 'QC', 'O': 'KC', 'P': 'AC',
+    // Spades
+    'q': '2S', 'r': '3S', 's': '4S', 't': '5S', 'u': '6S', 'v': '7S', 'w': '8S',
+    'x': '9S', 'y': 'TS', 'z': 'JS', 'A': 'QS', 'B': 'KS', 'C': 'AS',
+    })[char],
+
+    // Base 10 index (same order)
+    cards: [
+    '2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', 'TH', 'JH', 'QH', 'KH', 'AH',
+    '2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', 'TD', 'JD', 'QD', 'KD', 'AD',
+    '2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', 'TC', 'JC', 'QC', 'KC', 'AC',
+    '2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', 'TS', 'JS', 'QS', 'KS', 'AS' 
     ]
-};
+
+}
+;
 
 // an immutable Card object with a rank and a suit
-Poker.Card = function(rank, suit) {
+Poker.Card = function(rank, suit, base52) {
     this._rank = rank;
     this._suit = suit;
 };
@@ -67,8 +87,8 @@ Poker.Hand = function(cards) {
 
 Poker.Hand.prototype.numSameSuits = function() {
     var counters = [0, 0, 0, 0];
-    for (let idx = 0; idx < this.cards.length; ++idx) {
-        ++counters[this.cards[idx].getSuit()]
+    for (var idx = 0; idx < this.cards.length; idx += 1) {
+        counters[this.cards[idx].getSuit()] += 1;
     };
     return Math.max.apply(null, counters);
 };
@@ -79,15 +99,15 @@ Poker.Hand.prototype.numConnected = function() {
         run = max = 1,
         thisCardRank, prevCardRank;
 
-    for (let idx = 1; idx < oRanks.length; ++idx) {
+    for (var idx = 1; idx < oRanks.length; idx += 1) {
         thisCardRank = oRanks[idx];
         prevCardRank = oRanks[idx - 1];
         if (thisCardRank !== prevCardRank + 1) {
             run = 1;
         }
         else {
-            //run = run + 1;
-            max = ++run > max ? run : max;
+            run = run + 1;
+            max = run > max ? run : max;
         }
     }
     if (this.isLowStraight(oRanks)) {
@@ -97,14 +117,13 @@ Poker.Hand.prototype.numConnected = function() {
 };
 
 // special case where A plays low for A to 5 straight
-Poker.Hand.prototype.isLowStraight = oRanks => oRanks.slice(0, 4) == '2,3,4,5' && oRanks.includes(14)
-    //function(oRanks) {
-    //var lowFourCards = oRanks.slice(0, 4);
+Poker.Hand.prototype.isLowStraight = function(oRanks) {
+    var lowFourCards = oRanks.slice(0, 4);
     // if 2,3,4,5 and Ace in hand
-    //if (this.equivIntArrays(lowFourCards, [2,3,4,5]) && oRanks.includes(14)) {
-    //    return true;
-    //}
-    //return false;
+    if (this.equivIntArrays(lowFourCards, [2,3,4,5]) && oRanks.indexOf(14) > -1) {
+        return true;
+    }
+    return false;
 }
 
 // true if two int arrays identical
@@ -205,7 +224,7 @@ Poker.Hand.prototype.getHandDetails = function () {
         handDetails.value = this.buildValueArray(hand.QUADS, [4, 1]);
         return handDetails;
     }
-    if (this.numOfAKind() == '3,2')) {
+    if (this.equivIntArrays(this.numOfAKind(), [3,2])) {
         primary = this.getRankByOccurance(3)[0];
         secondary = this.getRankByOccurance(2)[0];
         handDetails.name = 'Fullhouse, ' + word[primary] +
@@ -225,13 +244,13 @@ Poker.Hand.prototype.getHandDetails = function () {
         handDetails.value = this.buildValueArray(hand.STRAIGHT, [1]);
         return handDetails;
     }
-    if (this.numOfAKind() == '3,1,1')) {
+    if (this.equivIntArrays(this.numOfAKind(), [3,1,1])) {
         primary = this.getRankByOccurance(3)[0];
         handDetails.name = 'Three ' + word[primary] + 's';
         handDetails.value = this.buildValueArray(hand.TRIPS, [3, 1]);
         return handDetails;
     }
-    if (this.numOfAKind() == '2,2,1')) {
+    if (this.equivIntArrays(this.numOfAKind(), [2,2,1])) {
         primary = this.getRankByOccurance(2)[0];
         secondary = this.getRankByOccurance(2)[1];
         handDetails.name = 'Two pair, ' +  word[primary] + 's over ' +
@@ -239,7 +258,7 @@ Poker.Hand.prototype.getHandDetails = function () {
         handDetails.value = this.buildValueArray(hand.TWO_PAIR, [2, 1]);
         return handDetails;
     }
-    if (this.numOfAKind() == '2,1,1,1')) {
+    if (this.equivIntArrays(this.numOfAKind(), [2,1,1,1])) {
         primary = this.getRankByOccurance(2)[0];
         handDetails.name = 'Pair of ' + word[primary] + 's';
         handDetails.value = this.buildValueArray(hand.PAIR, [2, 1]);
@@ -282,74 +301,114 @@ Poker.handFromString = function(handString) {
     return new Poker.Hand(cards);
 };
 
-// a deck of Card objects
-Poker.Deck = function() {
-    var cards = [],
-        dealt = [];
+Poker.Table = function () {
 
-    createCards();
-
-    function createCards() {
-        for (var suitIdx = 0; suitIdx < 4; suitIdx += 1) {
-            for (var rankIdx = 2; rankIdx < 15; rankIdx += 1) {
-                cards.push(new Poker.Card(rankIdx, suitIdx));
-            }
-        }
-    }
-
-    this.size = function() {
-        return cards.length;
-    };
-
-    // return numCards from deck (or less if deck exhausted)
-    this.deal = function(numCards) {
-        var cardArray = [],
-            len = Math.min(numCards, cards.length);
-        for (var idx = 0; idx < len; idx += 1) {
-            card = cards.pop();
-            cardArray.push(card);
-            dealt.push(card);
-        }
-        return cardArray;
-    };
-
-    // shuffle the deck (implicitly returns deck to full size)
-    this.shuffle = function(block, secrets) {
-        if(!block) throw 'Need block to shuffle.'
-        if(!secrets) throw 'Need secrets to shuffle.'
-
-        if(block.length !== 77) 
-          throw 'Invalid block.'
-
-        if(secrets.length % 2)
-          throw 'Invalid secrets.'
-
-        returnDealtCards();
-
-        shuffle(cards, block, secrets);
-    };
-
-    function returnDealtCards() {
-        var len = dealt.length;
-        while (len--) {
-            cards.push(dealt.pop());
-        }
-    }
-
-    // Fisher-Yates shuffle code found at:
-    // http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript
-    // swap each element in cards with a random other element
-    function shuffle(cards, block, secrets) {
-        return null;
-    }
-
-    this.toString = function() {
-
-        
-        return cards.toString();
-    };
 };
 
+
+// a deck of Card objects
+Poker.Deck = function(dealt) {
+    const cards = Poker.cards
+    ;
+    dealt || (
+      dealt = cards
+    )
+    ;
+    this.size = function() {
+        return cards.length;
+    }
+    ;
+    this.deal = function(num) {
+        return cards.splice(0, ++num)
+        ;
+    }
+    ;
+    // shuffle the deck (implicitly returns deck to full size)
+    this.shuffle = function(block, secrets) {
+        if(!block) 
+          throw 'Need block to shuffle.'
+        ;
+        if(!secrets)
+          throw 'Need secrets to shuffle.'
+        ;
+        if(block.length !== 77) 
+          throw 'Invalid block.'
+        ;
+        if(secrets.length % 2)
+          throw 'Invalid secrets.'
+        ;
+        returnDealtCards()
+        ;
+        shuffle(block, secrets)
+        ;
+    }
+    ;
+    function returnDealtCards() {
+        var len = dealt.length;
+        while (len--)
+            cards.push(dealt.pop())
+        ;
+        if(this.size !== Poker.cards.length)
+            throw 'Invalid deck.'
+    }
+     
+    function shuffle(block, secrets) {
+      /* 
+      * Our encoder. (from /lib/leat-encode.js)
+      */
+      try {
+        const c = sha512 && converter()
+        ;
+      } catch(e) { 
+        throw "For NodeJS: require('sha512') and require('encode-x')()." 
+        ;
+      }
+      /*****************************************************
+      *                                                    *
+      *         The magic happens here, an ordinary        *
+      *         HMAC-SHA512 hash created LOCALLY and       *
+      *         and seeded by the END USER creates the     *
+      *         deck and is inserted into the next block   *
+      *                                                    *
+      * Note we preserve shreaded deck for future shuffles *
+      ******************************************************/
+      const shreads = sha512.hmac( 
+        // From /lib/sha512.min.js
+        secrets, this.cards.join('')
+      ).finalize()
+      ;
+      // Preserve our shuffle.
+      this.shreads || (
+        this.shreads = []
+      )
+      ;
+      this.shreads.push( 
+        shreads.toString('hex')
+      )
+      ;
+      // Build a deck from the shreads. (remove repeats)
+      // We can just do delt = base52ToCard(...) instead
+      // of const shuffled = ..., but this way we keep immutability.
+      const shuffled = Object.keys(
+        c.from16to52(this.shreads)
+         .split('').reduce(
+           (a,_) =>
+             a[_] = _ && a
+         )
+      )
+      ;
+      shuffled.forEach(()=>
+        dealt.push(
+          base52ToCard(
+            shuffled[this.size]
+          )
+        )
+      )
+      ;
+    }
+    return dealt
+    ;
+}
 // compare an array of Hands and return the winner(s) in an array
 Poker.getWinners = function(hands) {
     var numberValues = getNumberValues(hands),
