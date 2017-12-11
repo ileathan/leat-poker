@@ -49,7 +49,6 @@
   // Extend the addition function to introduce multiplications.
   const multiply = (num, exponent, base) => {
     if(num <= 0) return num === 0 ? [] : 0;
-    num = BN(num);
     var result = [];
     while(true) {
       // Bit shit to the right and keep doubling the exponent
@@ -80,8 +79,8 @@
     if(charValues === null) return null;
     var resNumbers = [], exp = [1];
     for(let i = 0; i < charValues.length; ++i) {
-      resNumbers = add(resNumbers, multiply(charValues[i], exp, toBase), toBase);
-      exp = multiply(fromBase, exp, toBase)
+      resNumbers = add(resNumbers, multiply(BN(charValues[i]), exp, toBase), toBase);
+      exp = multiply(BN(fromBase), exp, toBase)
     }
     // And ends here.
     var res = '';
