@@ -163,12 +163,11 @@ Poker.Hand.prototype.getRankCount = function() {
     var oRanks = this.getOrderedRanks()
       , rankCount = {}
     ;
-    for (var i = 0; i < oRanks.length; i += 1)
+    for(let i = 0, l = oRanks.length; i < l; ++i)
         rankCount[oRanks[i]] ?
-            rankCount[oRanks[i]] += 1
+          rankCount[oRanks[i]] += 1
         :
-            rankCount[oRanks[i]] = 1
-        ;
+          rankCount[oRanks[i]] = 1
     ;
     return rankCount
     ;
