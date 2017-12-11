@@ -77,7 +77,7 @@ You are welcome to click the links in this repo and read and contribute, there i
         var block = {
           hash: block_hash,
             includes: {
-              luckyStrings: Promise of secrets // I believe this will be broadcasted next block since the clients already know their secrets and since the block is already generated there may be no way to fit this data untill next block (So genesis will be void 0).          
+              luckyStrings: secrets // I believe this will be broadcasted next block since the clients already know their secrets and since the block is already generated there may be no way to fit this data untill next block (So genesis will be void 0, res is last_games_secrets).          
               share: share,
               previousHash,
               block: hash
@@ -127,7 +127,7 @@ You are welcome to click the links in this repo and read and contribute, there i
       Deck.shreads = 
         Shuffled.toString('hex')
       ;
-      // Reduce the deck till we have no repeats.
+      // Reduce till we have a deck (no repeats).
       const Debloated = Object.keys(
         c.from16to52(Deck.shreads)
          .split('').reduce(
@@ -136,7 +136,7 @@ You are welcome to click the links in this repo and read and contribute, there i
          )
       )
       ;
-      // Push to new deck, most significant bits first.
+      // Push to deck, most significant bits first.
       Deck.forEach(()=>
         Deck.shift()
         && Deck.push(
