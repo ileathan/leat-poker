@@ -2,28 +2,29 @@ var Poker = {
     rankToString: [
       '', '', '2', '3', '4', '5', '6', '7',
       '8', '9', 'T', 'J', 'Q', 'K', 'A'
-    ],
-
+    ]
+    ,
     rankToWord: [
       '', '', 'two', 'three', 'four', 'five', 'six', 'seven', 
       'eight', 'nine', 'ten', 'jack', 'queen', 'king', 'ace'
-   ],
-
-    suitToString: ['H', 'D', 'C', 'S'],
-
+    ]
+    ,
+    suitToString: ['H', 'D', 'C', 'S']
+    ,
     rankToInt: {
       '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8,
       '9': 9, 'T': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14
-    },
-
-    suitToInt: {'H': 0, 'D': 1, 'C': 2, 'S': 3},
-
+    }
+    ,
+    suitToInt: {'H': 0, 'D': 1, 'C': 2, 'S': 3}
+    ,
     HAND_TYPE: { 
       'HIGH_CARD': 1, 'PAIR': 2, 'TWO_PAIR': 3, 'TRIPS': 4,  'STRAIGHT': 5,
       'FLUSH': 6, 'FULL_HOUSE': 7, 'QUADS': 8, 'STRAIGHT_FLUSH': 9
-    },
-
-    // Base52 - "0123456789abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOP"  
+    }
+    ,
+    Base52: "0123456789abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOP".split('')
+    ,
     base52ToCard: char => ({
     // Hearts
     '0': '2H', '1': '3H', '2': '4H', '3': '5H', '4': '6H', '5': '7H', '6': '8H',
@@ -37,8 +38,8 @@ var Poker = {
     // Spades
     'q': '2S', 'r': '3S', 's': '4S', 't': '5S', 'u': '6S', 'v': '7S', 'w': '8S',
     'x': '9S', 'y': 'TS', 'z': 'JS', 'A': 'QS', 'B': 'KS', 'C': 'AS',
-    })[char],
-
+    })[char]
+    ,
     // Base 10 index (same order)
     cards: [
     '2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', 'TH', 'JH', 'QH', 'KH', 'AH',
@@ -46,7 +47,6 @@ var Poker = {
     '2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', 'TC', 'JC', 'QC', 'KC', 'AC',
     '2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', 'TS', 'JS', 'QS', 'KS', 'AS' 
     ]
-
 }
 ;
 
