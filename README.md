@@ -55,46 +55,46 @@ You are welcome to click the links in this repo and read and contribute, there i
   * Verification of all previous decks 
   */
   leatServer.prototype.mineBlock = share => {
-    const GENESIS = 'leat';
-
+    const GENESIS = 'leat'
+    ;
     /* find our previous hash */
     BlockChain.findOne().sort({
       _id: -1
     }).then(last_block => {
       /* Deal with our first block (it has no previous hash) */
-      const previousHash = last_block ? last_block.hash : GENESIS;
-
+      const previousHash = last_block ? last_block.hash : GENESIS
+      ;
       const options = {
         timeCost: 77,
         memoryCost: 77777,
         parallelism: 77,
         hashLength: 77
-      };
-      const salt = crypto.randomBytes(77);
-
-      argond.hash(previousHash + share, salt, options).then(block_hash => {
-
+      }
+      ;
+      const salt = crypto.randomBytes(77)
+      ;
+      argond.hash(previousHash + share + secrets, salt, options).then(block_hash => {
         var block = {
-          hash: block_hash,
-            includes: {
-              luckyStrings: secrets, // I believe this will be broadcasted next block since the clients already know their secrets and since the block is already generated there may be no way to fit this data untill next block (So genesis will be void 0, res is last_games_secrets).          
-              share: share,
-              previousHash,
-              block: hash
-            }
-        };
-
-        BlockChain.create(block);
-
-        this.games.forEach(_=>_.emit('block found', block));
-
+          block_hash,
+          verifies: {
+            secrets, // I believe this will be broadcasted next block since the clients already know their secrets and since the block is already generated there may be no way to fit this data untill next block (So genesis will be void 0, res is last_games_secrets).          
+            share,
+            previousHash
+          }
+        }
+        ;
+        BlockChain.create(block)
+        ;
+        this.games.forEach(_=>_.emit('block found', block))
+        ;
         socket.emit('block found', block)
-
+        ;
       }
       )
+      ;
     }
     )
-
+    ;
   }
 ```
 **CLIENT**
