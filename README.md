@@ -13,7 +13,7 @@ My goals are purely altruistic, as you can see from the code all monetization is
 
 3.) If there is even a single game going on the stratum queries the core server which mines a modest block.
 
-4.) Now that we have our block we use it to generate all decks for all tables. When the server hands the clients the block if they do not _immediately_ respond with a lucky string they are disconnected. (They use this to generate their cards) If all users respond with lucky strings then the server allows betting, and continues to verify that the user is hashing fairly on all subsequent bets untill the game is over.
+4.) Now that we have our block we use it to generate the pre-deck-hash for all tables. When the server hands the clients the block if they do not _immediately_ respond with a lucky string they are disconnected. (They use this to generate their cards) If all users respond with lucky strings then the server allows betting, and continues to verify that the user is hashing fairly on all subsequent bets untill the game is over.
 
 5.) Once the game is over the salting data used to generate the block, along with any unused data cards are disclosed to the clients so that they may verify the hash against the work submitted, and the past blocks/decks.
 
