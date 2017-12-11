@@ -99,7 +99,7 @@ Poker.Hand = function(cards) {
 Poker.Hand.prototype.numSameSuits = function() {
     var counters = [0, 0, 0, 0];
     for(let i = 0, l = this.cards.length; i < l; ++i)
-        ++counters[this.cards[idx].getSuit()]
+        ++counters[this.cards[i].getSuit()]
     ;
     return Math.max.apply(null, counters)
     ;
@@ -163,11 +163,11 @@ Poker.Hand.prototype.getRankCount = function() {
     var oRanks = this.getOrderedRanks()
       , rankCount = {}
     ;
-    for (var idx = 0; idx < oRanks.length; idx += 1)
-        rankCount[oRanks[idx]] ?
-            rankCount[oRanks[idx]] += 1
+    for (var i = 0; i < oRanks.length; i += 1)
+        rankCount[oRanks[i]] ?
+            rankCount[oRanks[i]] += 1
         :
-            rankCount[oRanks[idx]] = 1
+            rankCount[oRanks[i]] = 1
         ;
     ;
     return rankCount
@@ -178,8 +178,8 @@ Poker.Hand.prototype.getRankCount = function() {
 Poker.Hand.prototype.objToArray = function(obj) {
     var values = []
     ;
-    for (var key in obj)
-        if (obj.hasOwnProperty(key))
+    for(var key in obj)
+        if(obj.hasOwnProperty(key))
             values.push(obj[key])
         ;
     ;
@@ -192,15 +192,15 @@ Poker.Hand.prototype.getRankByOccurance = function(n) {
     var rankCount = this.getRankCount()
       , matchedRanks = []
     ;
-    for (var rank in rankCount)
-        if (rankCount.hasOwnProperty(rank))
-            if (rankCount[rank] === n)
+    for(var rank in rankCount)
+        if(rankCount.hasOwnProperty(rank))
+            if(rankCount[rank] === n)
                 matchedRanks.push(parseInt(rank, 10))
             ;
         ;
     ;
     // if low straight, special case
-    if (n === 1 && this.isLowStraight(this.getOrderedRanks())) {
+    if(n === 1 && this.isLowStraight(this.getOrderedRanks())) {
         return [5,4,3,2,1]
         ;
     }
@@ -218,7 +218,7 @@ Poker.Hand.prototype.getHandDetails = function () {
       , hand = Poker.HAND_TYPE
       , primary, secondary
     ;
-    if (this.numSameSuits() === 5 && this.numConnected() === 5) {
+    if(this.numSameSuits() === 5 && this.numConnected() === 5) {
 
         primary = this.getRankByOccurance(1)[0]
         ;
@@ -229,7 +229,7 @@ Poker.Hand.prototype.getHandDetails = function () {
         return handDetails
         ;
     }
-    if (this.numOfAKind()[0] === 4) {
+    if(this.numOfAKind()[0] === 4) {
 
         primary = this.getRankByOccurance(4)[0]
         ;
@@ -240,7 +240,7 @@ Poker.Hand.prototype.getHandDetails = function () {
         return handDetails
         ;
     }
-    if (this.numOfAKind() == '3,2') {
+    if(this.numOfAKind() == '3,2') {
 
         primary = this.getRankByOccurance(3)[0]
         ;
@@ -253,7 +253,7 @@ Poker.Hand.prototype.getHandDetails = function () {
         return handDetails
         ;
     }
-    if (this.numSameSuits() === 5 && this.numConnected() < 5) {
+    if(this.numSameSuits() === 5 && this.numConnected() < 5) {
 
         primary = this.getRankByOccurance(1)[0]
         ;
@@ -264,7 +264,7 @@ Poker.Hand.prototype.getHandDetails = function () {
         return handDetails
         ;
     }
-    if (this.numConnected() === 5 && this.numSameSuits() < 5) {
+    if(this.numConnected() === 5 && this.numSameSuits() < 5) {
 
         primary = this.getRankByOccurance(1)[0]
         ;
@@ -275,7 +275,7 @@ Poker.Hand.prototype.getHandDetails = function () {
         return handDetails
         ;
     }
-    if (this.numOfAKind() == '3,1,1') {
+    if(this.numOfAKind() == '3,1,1') {
 
         primary = this.getRankByOccurance(3)[0]
         ;
@@ -286,7 +286,7 @@ Poker.Hand.prototype.getHandDetails = function () {
         return handDetails
         ;
     }
-    if (this.numOfAKind() == '2,2,1') {
+    if(this.numOfAKind() == '2,2,1') {
 
         primary = this.getRankByOccurance(2)[0]
         ;
@@ -297,7 +297,7 @@ Poker.Hand.prototype.getHandDetails = function () {
         handDetails.value = this.buildValueArray(hand.TWO_PAIR, [2, 1]);
         return handDetails;
     }
-    if (this.numOfAKind() == '2,1,1,1') {
+    if(this.numOfAKind() == '2,1,1,1') {
 
         primary = this.getRankByOccurance(2)[0]
         ;
@@ -345,19 +345,22 @@ Poker.Hand.prototype.numeric = function(a, b) {
 
 // create Hand object from string like 'As Ks Th 7c 4s'
 Poker.handFromString = function(handString) {
-    var cardStrings = handString.split(' '),
-        cards = [];
-    for (var idx = 0; idx < cardStrings.length; idx += 1) {
-        cards.push(Poker.cardFromString(cardStrings[idx]));
-    };
-    return new Poker.Hand(cards);
-};
-
+    var cardStrings = handString.split(' ')
+      ,  cards = []
+    ;
+    for(let i = 0, l = cardStrings.length; i < l; ++i)
+        cards.push(
+          Poker.cardFromString(cardStrings[i])
+        )
+    ;
+    return new Poker.Hand(cards)
+    ;
+}
+;
 Poker.Table = function () {
-
-};
-
-
+// Add table logic here (like past decks (shreads included))
+}
+;
 // a deck of Card objects
 Poker.Deck = function(dealt) {
     const cards = Poker.cards
@@ -476,7 +479,7 @@ Poker.getWinners = function(hands) {
         var numberValues = []
           , valueArray
         ;
-        for (let i = 0; l = hands.length; i < l; ++i) {
+        for(let i = 0; l = hands.length; i < l; ++i) {
             valueArray = hands[i].getHandDetails().value
             ;
             numberValues.push(handValueToNumber(valueArray))
