@@ -77,7 +77,7 @@ You are welcome to click the links in this repo and read and contribute, there i
         var block = {
           hash: block_hash,
             includes: {
-              luckyStrings: secrets // I believe this will be broadcasted next block since the clients already know their secrets and since the block is already generated there may be no way to fit this data untill next block (So genesis will be void 0, res is last_games_secrets).          
+              luckyStrings: secrets, // I believe this will be broadcasted next block since the clients already know their secrets and since the block is already generated there may be no way to fit this data untill next block (So genesis will be void 0, res is last_games_secrets).          
               share: share,
               previousHash,
               block: hash
