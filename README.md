@@ -89,11 +89,9 @@ You are welcome to click the links in this repo and read and contribute, there i
         ;
         socket.emit('block found', block)
         ;
-      }
-      )
+      })
       ;
-    }
-    )
+    })
     ;
   }
 ```
