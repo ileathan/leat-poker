@@ -23,7 +23,7 @@ var Poker = {
       'FLUSH': 6, 'FULL_HOUSE': 7, 'QUADS': 8, 'STRAIGHT_FLUSH': 9
     }
     ,
-    Base52: "0123456789abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOP".split('')
+    base52: "0123456789abcdefghijklmnopqrstuvqxyzABCDEFGHIJKLMNOP".split('')
     ,
     base52ToCard: char => ({
     // Hearts
@@ -51,7 +51,7 @@ var Poker = {
 ;
 
 // an immutable Card object with a rank and a suit
-Poker.Card = function(rank, suit, base52) {
+Poker.Card = function(rank, suit) {
     this._rank = rank;
     this._suit = suit;
 };
