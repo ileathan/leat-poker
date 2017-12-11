@@ -58,9 +58,10 @@ Poker.Card = function(rank, suit) {
 }
 ;
 Poker.Card.prototype.getRank = function() {
-    return this._rank;
-};
-
+    return this._rank
+    ;
+}
+;
 Poker.Card.prototype.getSuit = function() {
     return this._suit
     ;
