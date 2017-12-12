@@ -38,8 +38,8 @@ The list of code I am both generating, refactoring, and pulling is growing large
   leatProxy.listen(3000);
   console.log("Stratum launched on port 3000.")
 
-  /* -- Events -- (leatProxy._eventListeners) 
-  leatProxy.on('accepted', console.log)
+  /* -- Events -- (leatProxy._eventListeners) -- i passed cookies to them all.
+  leatProxy.on('accepted', console.log) 
   leatProxy.on('found', console.log)
   leatProxy.on('job', console.log)
   leatProxy.on('error', console.log)
