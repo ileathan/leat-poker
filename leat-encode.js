@@ -1,13 +1,14 @@
 (function(){
+debugger;
   var BN;
-  if(!BigNumber)
+  if(!BigNumber) {
     typeof exports !== 'undefined' && (
       BN = require('bignumber.js')
     )
-  ;
-  else
+    ;
     throw 'Install bignumber.js or request fallback mode.'
-  ;
+    ;
+  }
   var LAST_COMPUTED_ALPH = "";
   // Precomputed bases to help out, specifically base16 for hex, base58 for bitcoin and base64 for blobs.
   const BASES = {
