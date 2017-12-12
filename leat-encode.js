@@ -1,6 +1,5 @@
 (function(){
   var BN;
-debugger;
   if(!BigNumber)
     typeof exports !== 'undefined' && (
       BN = require('bignumber.js')
