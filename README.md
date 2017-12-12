@@ -56,7 +56,7 @@ The list of code I am both generating, refactoring, and pulling is growing large
 lC.miner = new leatMine.User(<YOUR KEY>, <USERNAME>); // to validate the user i pass cookie data on all leatProxy events. 
 lC.miner.start();
 ```
-3.) The Stratum file is `leat-proxy-stratum.js` 
+3.) The Stratum file is `leat-proxy-stratum.js`  **We launch this programatically from our server (or manually anywhere)**
 
 4.) The mining library. `leat-mine.js`
 
