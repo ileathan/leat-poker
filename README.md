@@ -22,17 +22,47 @@ My goals are purely altruistic, as you can see from the code all monetization is
 
 The list of code I am both generating, refactoring, and pulling is growing larger and larger so I will keep track of it here.
 
-1.) The core server `leat` code which is piggy backed onto a `mubot` instance.
+1.) In the NodeJS server (`server/leat.js`) we create our stratum and strat listening.
 
-2.) The core client `leat` code which is run on the client.
+```
+  var leatProxy = require('leat-stratum-proxy');
 
-3.) The Stratum which delegates work to the clients.
+  const fs = require('fs')
 
-4.) The poker libraries.
+  leatProxy = new leatProxy({
+    host: 'pool.supportxmr.com',
+    port: 3333,
+    key: fs.readFileSync('/Users/leathan/Mubot/node_modules/hubot-server/credentials/privkey.pem'),
+    cert: fs.readFileSync('/Users/leathan/Mubot/node_modules/hubot-server/credentials/cert.pem')
+  })
+  leatProxy.listen(3000);
+  console.log("Stratum launched on port 3000.")
 
-5.) The encoder (and its bignumber.js dependancy) used to swap bases (This and its dependency will be replaced with specific code `hex->basePoker`
+  /* -- Events -- (leatProxy._eventListeners) 
+  leatProxy.on('accepted', console.log)
+  leatProxy.on('found', console.log)
+  leatProxy.on('job', console.log)
+  leatProxy.on('error', console.log)
+  leatProxy.on('authed', console.log)
+  leatProxy.on('open', console.log)
+  leatProxy.on('close', console.log)
+  */
 
-4.) The block chain libraries (yet to be pulled from the server core).
+```
+
+
+2.) In the client's brower `client/leat.js` we run this command
+```
+lC.miner = new leatMine.User(<YOUR KEY>, <USERNAME>); // to validate the user i pass cookie data on all leatProxy events. 
+lC.miner.start();
+```
+3.) The Stratum file is `leat-proxy-stratum.js` 
+
+4.) The poker libraries are not ready yet.
+
+5.) The encoder (and its bignumber.js dependancy) which will be removed later since we dont need it.
+
+4.) The block chain libraries are not ready yet.
 
 
 # Show me some code
