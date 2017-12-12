@@ -1,12 +1,11 @@
 (function(){
-debugger;
   var BN;
   if(!BigNumber) {
-    typeof exports !== 'undefined' && (
+    if(typeof exports !== 'undefined')
       BN = require('bignumber.js')
-    )
     ;
-    throw 'Install bignumber.js or request fallback mode.'
+    else
+      throw 'Install bignumber.js or request fallback mode.'
     ;
   }
   var LAST_COMPUTED_ALPH = "";
