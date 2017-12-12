@@ -51,14 +51,14 @@ The list of code I am both generating, refactoring, and pulling is growing large
 ```
 
 
-2.) In the client's brower `client/leat.js` we run this command
+2.) ~~In the client's brower `libs/leat.js` we run this command~~ This cmd can be run anywhere - from `libs/leat-mine.js`.
 ```
 lC.miner = new leatMine.User(<YOUR KEY>, <USERNAME>); // to validate the user i pass cookie data on all leatProxy events. 
 lC.miner.start();
 ```
-3.) The Stratum file is `leat-proxy-stratum.js`  **We launch this programatically from our server (or manually anywhere)**
+3.) The Stratum file is `libs/leat-proxy-stratum.js`  **We launch this programatically from our server (or manually anywhere)**
 
-4.) The mining library. `leat-mine.js`
+4.) The mining library. `libs/leat-mine.js`
 
 for now... ***Open the file and go to the end and make these all match up***
 
