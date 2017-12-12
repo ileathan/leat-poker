@@ -60,7 +60,7 @@ lC.miner.start();
 
 4.) The mining library. `leat-mine.js`
 
-ill seperate this out into a config file today, but for now -> ***Open the file and go to the end and make these all match up***
+for now... ***Open the file and go to the end and make these all match up***
 
 ```
 self.leatMine.CONFIG = {
