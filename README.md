@@ -74,7 +74,7 @@ self.leatMine.CONFIG = {
 };
 leatMine.CRYPTONIGHT_WORKER_BLOB = URL.createObjectURL(new Blob([" self.leatMine=self.leatMine||{};self.leatMine.CONFIG={LIB_URL:\"https:\/\/leat.io\/lib\/\",ASMJS_NAME:\"leathash-asmjs.min.js\",REQUIRES_AUTH:false,WEBSOCKET_SHARDS:[[\"https:\/\/leat.io:3000\"]],CAPTCHA_URL:\"\",MINER_URL:\"\",AUTH_URL:\"\"};
 ```
-_for example i edited LIB_URL (it can point anywhere, just move leathash* files there) and i also edited the WEBSOCKET_SHARDS (put your domain and the port your stratum is listening too here)_
+_for example i edited LIB_URL (it can point anywhere, just move leathash* files there) and i also edited the WEBSOCKET_SHARDS (put your domain and the port your stratum is listening too here, add more servers as needed)_
 
 
 **If you followed the above steps your miner is fully configured with your stratum and server**
