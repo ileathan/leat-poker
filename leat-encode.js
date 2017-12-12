@@ -1,7 +1,10 @@
 (function(){
   var BN;
-  if (typeof exports !== 'undefined')
-    BN = require('bignumber.js')
+debugger;
+  if(!BigNumber)
+    typeof exports !== 'undefined' && (
+      BN = require('bignumber.js')
+    )
   ;
   else
     throw 'Install bignumber.js or request fallback mode.'
@@ -21,7 +24,6 @@
     BASE_64: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
     BASE_66: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.!~",
     BASE_95: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/~!@#$%^&*()_`<>,.?'\";:[{]}\\|=- ",
-    BASE_POKER: = "", // Will add later.
     FALL_BACK: function(max_i){
       let res = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/~!@#$%^&*()_`<>,.?'\";:[{]}\\|=- ";
       if(LAST_COMPUTED_ALPH.length >= max_i) return LAST_COMPUTED_ALPH.slice(0, max_i);
@@ -55,6 +57,7 @@
   // Extend the addition function to introduce multiplications.
   const multiply = (num, exponent, base) => {
     if(num <= 0) return num === 0 ? [] : 0;
+    num = BN(num);
     var result = [];
     while(true) {
       // Bit shit to the right and keep doubling the exponent
@@ -85,8 +88,8 @@
     if(charValues === null) return null;
     var resNumbers = [], exp = [1];
     for(let i = 0; i < charValues.length; ++i) {
-      resNumbers = add(resNumbers, multiply(BN(charValues[i]), exp, toBase), toBase);
-      exp = multiply(BN(fromBase), exp, toBase)
+      resNumbers = add(resNumbers, multiply(charValues[i], exp, toBase), toBase);
+      exp = multiply(fromBase, exp, toBase)
     }
     // And ends here.
     var res = '';
