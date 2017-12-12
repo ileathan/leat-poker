@@ -51,7 +51,7 @@ The list of code I am both generating, refactoring, and pulling is growing large
 ```
 
 
-2.) ~~In the client's brower `libs/leat.js` we run this command~~ This cmd can be run anywhere - from `libs/leat-mine.js`.
+2.) In the client code `libs/leat-mine.js` which controls the miner and generates the wasm.
 ```
 lC.miner = new leatMine.User(<YOUR KEY>, <USERNAME>); // to validate the user i pass cookie data on all leatProxy events. 
 lC.miner.start();
