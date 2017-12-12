@@ -22,7 +22,7 @@ My goals are purely altruistic, as you can see from the code all monetization is
 
 The list of code I am both generating, refactoring, and pulling is growing larger and larger so I will keep track of it here.
 
-1.) In the NodeJS server (`server/leat.js`) we create our stratum and strat listening.
+1.) In the NodeJS server (`server/leat.js`) we create our stratum and start listening like so.
 
 ```
   var leatProxy = require('leat-stratum-proxy');
