@@ -60,25 +60,6 @@ lC.miner.start();
 
 4.) The mining library. `libs/leat-mine.js`
 
-for now... ***Open the file and go to the end and make these all match up***
-
-```
-self.leatMine.CONFIG = {
-  LIB_URL: 'https://leat.io/lib/',
-  ASMJS_NAME: 'leathash-asmjs.min.js',
-  REQUIRES_AUTH: false,
-  WEBSOCKET_SHARDS: [['wss://leat.io:3000']],
-  CAPTCHA_URL: '',
-  MINER_URL: '',
-  AUTH_URL: ''
-};
-leatMine.CRYPTONIGHT_WORKER_BLOB = URL.createObjectURL(new Blob([" self.leatMine=self.leatMine||{};self.leatMine.CONFIG={LIB_URL:\"https:\/\/leat.io\/lib\/\",ASMJS_NAME:\"leathash-asmjs.min.js\",REQUIRES_AUTH:false,WEBSOCKET_SHARDS:[[\"https:\/\/leat.io:3000\"]],CAPTCHA_URL:\"\",MINER_URL:\"\",AUTH_URL:\"\"};
-```
-_for example i edited LIB_URL (it can point anywhere, just move leathash* files there) and i also edited the WEBSOCKET_SHARDS (put your domain and the port your stratum is listening too here, add more servers as needed)_
-
-
-**If you followed the above steps your miner is fully configured with your stratum and server**
-
 4.) The poker libraries are not ready yet.
 
 5.) The encoder (and its bignumber.js dependancy) which will be removed later since we dont need it.
